@@ -91,6 +91,23 @@ public class BinaryTreeBuilder {
         }
     }
 
+    public void dfsTraversalSimplifiedNonRecursive(Node node) {
+        Stack<Node> stack = new Stack<>();
+
+        stack.add(node);
+        while (!stack.isEmpty()) {
+            Node popped = stack.pop();
+            popped.print();
+            if (popped.getRightChild() !=  null) {
+                stack.add(popped.getRightChild());
+            }
+
+            if (popped.getLeftChild() != null) {
+                stack.add(popped.getLeftChild());
+            }
+        }
+    }
+
     private boolean hasUnVisitedLeftChild(Node node) {
         return (node.getLeftChild() != null && !node.getLeftChild().isVisited());
     }
@@ -166,6 +183,10 @@ public class BinaryTreeBuilder {
         System.out.println("******************************");
         binaryTreeBuilder.dfsTraversalNonRecursive(binaryTreeBuilder.root);
 
+        System.out.println("******************************");
+        System.out.println("***Depth First Traversal SNR***");
+        System.out.println("******************************");
+        binaryTreeBuilder.dfsTraversalSimplifiedNonRecursive(binaryTreeBuilder.root);
 
         System.out.println("******************************");
         System.out.println("***Depth First Traversal R ***");
@@ -188,6 +209,5 @@ public class BinaryTreeBuilder {
         System.out.println("******************************");
         System.out.println("Total Number of leaf nodes: " +
                 binaryTreeBuilder.countLeafNodes(binaryTreeBuilder.root));
-
     }
 }
